@@ -1,8 +1,8 @@
 <body>
-	<h1>Preço do Bitcoin</h1>
-	<h2>O preço médio ponderado do bitcoin é de:</h2>
+	<h1>Preço do NANO</h1>
+	<h2>O preço médio ponderado do nano é de:</h2>
 		<h3>R$ <?=number_format($preco_ponderado, 2, ',', '.')?></h3>
-	<div class="center"><p>Este é o preço do bitcoin levando em consideração as seguintes exchanges brasileiras que fazem par com o Real.</p></div>
+	<div class="center"><p>Este é o preço do nano levando em consideração as seguintes exchanges brasileiras que fazem par com o Real.</p></div>
 	<table>
 	<tbody>
 		<tr><th colspan="4">Preços por Exchange</th></tr>
@@ -13,49 +13,16 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td>Braziliex</td>
-			<td>R$: <?=number_format($braziliex_price, 2, ',', '.')?></td>
-			<td><?=number_format($braziliex_volume, 2, ',', '.')?></td>
-			<td><?=$pbraziliex?>%</td>
-		</tr>
-		<tr>
-			<td>Bitcoin Trade</td>
-			<td>R$: <?=number_format($bitcointrade_price, 2, ',', '.')?></td>
-			<td><?=number_format($bitcointrade_volume, 2, ',', '.')?></td>
-			<td><?=$pbitcointrade?>%</td>
-		</tr>
-		<tr>
-			<td>Walltime</td>
-			<td>R$: <?=number_format($walltime_price, 2, ',', '.')?></td>
-			<td><?=number_format($walltime_volume, 2, ',', '.')?></td>
-			<td><?=$pwalltime?>%</td>
-		</tr>
-		<tr>
 			<td>Bitcoin to you</td>
 			<td>R$: <?=number_format($bitcointoyou_price, 2, ',', '.')?></td>
 			<td><?=number_format($bitcointoyou_volume, 2, ',', '.')?></td>
 			<td><?=$pbitcointoyou?>%</td>
 		</tr>
-		<tr>
-			<td>Mercado Bitcoin</td>
-			<td>R$: <?=number_format($mercadobitcoin_price, 2, ',', '.')?></td>
-			<td><?=number_format($mercadobitcoin_volume, 2, ',', '.')?></td>
-			<td><?=$pmercadobitcoin?>%</td>
-		</tr>
-		<tr>
-			<td>NovaDax</td>
-			<td>R$: <?=number_format($novadax_price, 2, ',', '.')?></td>
-			<td><?=number_format($novadax_volume, 2, ',', '.')?></td>
-			<td><?=$pnbovadax?>%</td>
-		</tr>
+
 			<td colspan="4" id='total'>O total negociado é de: <?=$volumetotal?> = 100%</td>
 	    </tr>
 	</tbody>
 	</table>
-	<br>
-	<div class="fb-share-button" data-href="https://bitcao.notasdovitor.top/cotacao/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbitcao.notasdovitor.top%2Fcotacao%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartilhar</a></div>
-	<br>
 <br>
 Data e hora do servidor em GMT -3: <?=$date?>
-<br>
 <br>
