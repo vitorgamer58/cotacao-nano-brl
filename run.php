@@ -37,29 +37,27 @@ $cachetime = 300; //diferenÃ§a entre o tempo atual e o tempo de ultima modificaÃ
 //$json_bitcointoyou = file_get_contents("https://www.bitcointoyou.com/api/ticker.aspx");
 
 //cache da API
-$cache_bitcointoyou = 'bitcointoyou.cache';
-if(file_exists($cache_bitcointoyou)) {
-  if(time() - filemtime($cache_bitcointoyou) > $cachetime) {
-     // too old , re-fetch
-     $cache = file_get_contents("https://back.bitcointoyou.com/API/ticker?pair=BTC_BRLC"); //Atualiza o Cache
-     file_put_contents($cache_bitcointoyou, $cache);
-     $json_bitcointoyou = file_get_contents($cache_bitcointoyou);
-  } else {
-     $json_bitcointoyou = file_get_contents($cache_bitcointoyou);
-  }
-} else {
+//$cache_bitcointoyou = 'bitcointoyou.cache';
+//if(file_exists($cache_bitcointoyou)) {
+//  if(time() - filemtime($cache_bitcointoyou) > $cachetime) {
+//     // too old , re-fetch
+//     $cache = file_get_contents("https://back.bitcointoyou.com/API/ticker?pair=NANO_BRLC"); //Atualiza o Cache
+//     file_put_contents($cache_bitcointoyou, $cache);
+//     $json_bitcointoyou = file_get_contents($cache_bitcointoyou);
+//  } else {
+//     $json_bitcointoyou = file_get_contents($cache_bitcointoyou);
+//  }
+//} else {
   // no cache, create one
-  $cache = file_get_contents("https://back.bitcointoyou.com/API/ticker?pair=BTC_BRLC"); //Cria o Cache
-  file_put_contents($cache_bitcointoyou, $cache);
-  $json_bitcointoyou = file_get_contents($cache_bitcointoyou);
-}
+//  $cache = file_get_contents("https://back.bitcointoyou.com/API/ticker?pair=BTC_BRLC"); //Cria o Cache
+//  file_put_contents($cache_bitcointoyou, $cache);
+//  $json_bitcointoyou = file_get_contents($cache_bitcointoyou);
+//}
 
-$databitcointoyou = json_decode($json_bitcointoyou, true);
-$bitcointoyou_price = $databitcointoyou['summary']['last'];
-$bitcointoyou_volume = $databitcointoyou['summary']['amount'];
-//$bitcointoyou_price = intval($bitcointoyou_price);
-//$bitcointoyou_volume = intval($bitcointoyou_volume);
-$varbitcointoyou = $bitcointoyou_price * $bitcointoyou_volume;
+//$databitcointoyou = json_decode($json_bitcointoyou, true);
+//$bitcointoyou_price = $databitcointoyou['summary']['last'];
+//$bitcointoyou_volume = $databitcointoyou['summary']['amount'];
+//$varbitcointoyou = $bitcointoyou_price * $bitcointoyou_volume;
 
 //pagcripto <3
 //Cache
@@ -67,7 +65,7 @@ $cache_pagcripto = 'pagcripto.cache';
 if(file_exists('pagcripto.cache')) {
   if(time() - filemtime($cache_pagcripto) > $cachetime) {
     //valor antigo -> atualizar valor
-    $cache_pagcripto1 = file_get_contents('https://api.pagcripto.com.br/v2/public/ticker/BTCBRL');
+    $cache_pagcripto1 = file_get_contents('https://api.pagcripto.com.br/v2/public/ticker/NANOBRL');
     file_put_contents($cache_pagcripto, $cache_pagcripto1);
     $json_pagcripto = file_get_contents($cache_pagcripto);
   } else {
@@ -75,7 +73,7 @@ if(file_exists('pagcripto.cache')) {
   }
 } else {
   //sem arquivo de cache -> criar
-  $cache_pagcripto1 = file_get_contents('https://api.pagcripto.com.br/v2/public/ticker/BTCBRL');
+  $cache_pagcripto1 = file_get_contents('https://api.pagcripto.com.br/v2/public/ticker/NANOBRL');
   file_put_contents($cache_pagcripto, $cache_pagcripto1);
   $json_pagcripto = file_get_contents($cache_pagcripto);
 }
@@ -86,9 +84,9 @@ $varpagcripto = $pagcripto_price * $pagcripto_volume;
 
 
 //Calcula o preco medio ponderado
-$allvariables = $varbitcointoyou + $varpagcripto; //soma todas as variaveis
+$allvariables = $varpagcripto; //soma todas as variaveis
 
-$volumetotal = $bitcointoyou_volume + $pagcripto_volume; //soma todos os volumes
+$volumetotal = $pagcripto_volume; //soma todos os volumes
 $volumetotal = round($volumetotal, 8); //NANO tem 8 casas decimais
 
 $preco_ponderado = $allvariables / $volumetotal; //calcula o preco medio ponderado
@@ -97,7 +95,7 @@ $preco_ponderado = $allvariables / $volumetotal; //calcula o preco medio pondera
 
 //Calcula o MarketShare
 //$pbitcointrade = round(($bitcointrade_volume/$volumetotal)*100, 2);
-$pbitcointoyou = round(($bitcointoyou_volume/$volumetotal)*100, 2);
+//$pbitcointoyou = round(($bitcointoyou_volume/$volumetotal)*100, 2);
 $ppagcripto = round(($pagcripto_volume/$volumetotal)*100, 2);
 
 //puxa a data e hora do servidor
