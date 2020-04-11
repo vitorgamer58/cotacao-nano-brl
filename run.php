@@ -77,26 +77,32 @@ if(file_exists('pagcripto.cache')) {
   file_put_contents($cache_pagcripto, $cache_pagcripto1);
   $json_pagcripto = file_get_contents($cache_pagcripto);
 }
+
 $datapagcripto = json_decode($json_pagcripto, true);
 $pagcripto_price = $datapagcripto['data']['last'];
 $pagcripto_volume = $datapagcripto['data']['volume'];
-$varpagcripto = $pagcripto_price * $pagcripto_volume;
+if($pagcripto_volume == 0){
+  $varpagcripto = 0;
+  $ppagcripto = 0;
+} else {
+  $varpagcripto = $pagcripto_price * $pagcripto_volume;
+  $ppagcripto = round(($pagcripto_volume/$volumetotal)*100, 2);
+}
+
 
 
 //Calcula o preco medio ponderado
-$allvariables = $varpagcripto; //soma todas as variaveis
+if($pagcripto_volume > 0){
+  $allvariables = $varpagcripto; //soma todas as variaveis
+  $volumetotal = $pagcripto_volume; //soma todos os volumes
+  $volumetotal = round($volumetotal, 8); //NANO tem 8 casas decimais
+  $preco_ponderado = $allvariables / $volumetotal; //calcula o preco medio ponderado
+} else {
+  $volumetotal = 0;
+  $preco_ponderado = $pagcripto_price;
+}
 
-$volumetotal = $pagcripto_volume; //soma todos os volumes
-$volumetotal = round($volumetotal, 8); //NANO tem 8 casas decimais
 
-$preco_ponderado = $allvariables / $volumetotal; //calcula o preco medio ponderado
-
-//$preco_ponderado = intval($preco_ponderado); //transforma em numero
-
-//Calcula o MarketShare
-//$pbitcointrade = round(($bitcointrade_volume/$volumetotal)*100, 2);
-//$pbitcointoyou = round(($bitcointoyou_volume/$volumetotal)*100, 2);
-$ppagcripto = round(($pagcripto_volume/$volumetotal)*100, 2);
 
 //puxa a data e hora do servidor
 //isso mostra em que data estão os valores, para evitar equívocos com o cache
