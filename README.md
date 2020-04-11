@@ -1,4 +1,4 @@
-# cotacao-bitcoin-php
+# cotacao-nano-brl
 
 
 Código simples em PHP que faz as solicitações para as exchanges de criptomoedas dos respectivos preços, e então calcula uma média ponderada pelo volume.
@@ -6,15 +6,10 @@ Código simples em PHP que faz as solicitações para as exchanges de criptomoed
 Exchanges:
 
 ```
-Braziliex
-Bitcoin Trade
-Walltime
-Bitcoin to You
-Mercado Bitcoin
-Novadax
+Pagcripto
 ```
 
-Endereço: https://bitcao.notasdovitor.top/cotacao/
+Endereço: http://bitcao.notasdovitor.top/cotacao-nano/
 
 
 ![em funcionamento](https://raw.githubusercontent.com/vitorgamer58/cotacao-bitcoin-php/master/img/img.png)
@@ -23,7 +18,6 @@ Endereço: https://bitcao.notasdovitor.top/cotacao/
 ### Instalação
 Basta jogar os arquivos dentro de seu servidor php previamente configurado
 
-ver na [wiki](https://github.com/vitorgamer58/cotacao-bitcoin-php/wiki)
 
 ### Cache
 
